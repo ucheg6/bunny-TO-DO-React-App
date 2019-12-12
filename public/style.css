@@ -1,0 +1,16 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #f9f8f6;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
+}
+.onHover:hover {
+	cursor: pointer;
+}
