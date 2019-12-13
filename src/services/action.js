@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { toastSuccess, toastError } from '../utilities/toast';
+import alertify from 'alertifyjs';
+
 export const baseUrl = 'https://bunny-to-do.herokuapp.com/api/v1/';
 export const createUserUrl = `${baseUrl}user`;
 export const getUsersUrl = `${baseUrl}users`;
@@ -15,7 +16,8 @@ export const createUser = async name => {
 			Name: name,
 		})
 		.then(result => {
-			toastSuccess(`User created successfully. ${result.data.message}`);
+			alertify.set('notifier', 'position', 'top-right');
+			alertify.success(result.data.message);
 			localStorage.setItem('userToken', result.data.token);
 			localStorage.setItem('userId', result.data.newUser[0].id);
 			return result;
@@ -37,7 +39,8 @@ export const createTodo = async todo => {
 			headers,
 		},
 	);
-	toastSuccess(result.data.message);
+	alertify.set('notifier', 'position', 'top-right');
+	alertify.success(result.data.message);
 	return result;
 };
 
@@ -66,7 +69,8 @@ export const deleteTodo = async id => {
 	const result = await axios.delete(deleteTodoUrl, {
 		headers,
 	});
-	toastSuccess(result.data.message);
+	alertify.set('notifier', 'position', 'top-right');
+	alertify.success(result.data.message);
 	return result.data;
 };
 export const deleteUser = async id => {
@@ -75,7 +79,8 @@ export const deleteUser = async id => {
 	const result = await axios.delete(deleteUserUrl, {
 		headers,
 	});
-	toastSuccess(result.data.message);
+	alertify.set('notifier', 'position', 'top-right');
+	alertify.success(result.data.message);
 	return result.data;
 };
 
@@ -88,7 +93,8 @@ export const editStatus = async (id, state) => {
 			headers,
 		},
 	);
-	toastSuccess(result.data.message);
+	alertify.set('notifier', 'position', 'top-right');
+	alertify.success(result.data.message);
 	return result.data.updatedTask;
 };
 
@@ -101,7 +107,8 @@ export const editTask = async (id, description) => {
 			headers,
 		},
 	);
-	toastSuccess(result.data.message);
+	alertify.set('notifier', 'position', 'top-right');
+	alertify.success(result.data.message);
 	return result.data.updatedTask;
 };
 
@@ -114,6 +121,7 @@ export const editUser = async (id, name) => {
 			headers,
 		},
 	);
-	toastSuccess(result.data.message);
+	alertify.set('notifier', 'position', 'top-right');
+	alertify.success(result.data.message);
 	return result.data.updatedUser;
 };

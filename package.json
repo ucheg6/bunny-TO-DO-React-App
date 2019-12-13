@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/ucheg6/bunny-TO-DO-React-App#readme",
   "dependencies": {
+    "alertifyjs": "^1.13.1",
     "axios": "^0.19.0",
     "koa": "^2.11.0",
     "koa-static": "^5.0.0",

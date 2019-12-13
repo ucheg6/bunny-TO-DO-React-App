@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getUsers, deleteUser, editUser } from '../services/action';
-import { ToastContainer } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
 const UsersComponent = () => {
@@ -52,7 +51,6 @@ const UsersComponent = () => {
 	return (
 		<div className="container">
 			<div className="col-md-12">
-				<ToastContainer />
 				<h3 className="text-center m-3">Users</h3>
 			</div>
 			<div className="col-md-12">
@@ -66,7 +64,7 @@ const UsersComponent = () => {
 									<input
 										type="text"
 										className="form-control"
-										placeholder="type something"
+										placeholder="name"
 										aria-label="something to do"
 										aria-describedby="input_todo"
 										id="user_input"
@@ -80,7 +78,7 @@ const UsersComponent = () => {
 											id="add_button"
 											onClick={e => handleEditUser(e)}
 										>
-											Edit User
+											Submit
 										</button>
 									</div>
 								</div>

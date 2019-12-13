@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { createUser } from '../services/action';
-import { ToastContainer } from 'react-toastify';
 
 const SignupComponent = () => {
 	const [userName, setUserName] = useState('');
@@ -14,10 +13,8 @@ const SignupComponent = () => {
 	return (
 		<div className="container">
 			<div className="col-md-4"></div>
-			<ToastContainer />
-
 			<div className="col-md-8">
-				<h3 className="text-center m-3">Please let's know you</h3>
+				<h3 className="text-center m-3">Please submit your name first.</h3>
 			</div>
 			<form>
 				<div className="form-group mt-900">
