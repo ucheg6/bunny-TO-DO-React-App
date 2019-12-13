@@ -6,7 +6,6 @@ import {
 	editStatus,
 	editTask,
 } from '../services/action';
-import { ToastContainer } from 'react-toastify';
 
 const TodoComponent = () => {
 	const [todo, setTodo] = useState('');
@@ -90,8 +89,6 @@ const TodoComponent = () => {
 	};
 	return (
 		<div className="container">
-			<ToastContainer />
-
 			<div className="col-md-12">
 				<h3 className="text-center m-3">To-do List</h3>
 			</div>
@@ -138,7 +135,7 @@ const TodoComponent = () => {
 									<input
 										type="text"
 										className="form-control"
-										placeholder={todo.description}
+										placeholder="description"
 										aria-label="something to do"
 										aria-describedby="input_todo"
 										id="user_input"
@@ -152,7 +149,7 @@ const TodoComponent = () => {
 											id="add_button"
 											onClick={e => handleEditTask(e)}
 										>
-											Edit Task
+											Submit
 										</button>
 									</div>
 								</div>

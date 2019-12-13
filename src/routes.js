@@ -11,7 +11,7 @@ const Routes = () => (
 			<Route path="/signup" component={Signup} />
 			<Route path="/todo" component={Todo} />
 			<Route path="/users" component={Users} />
-			<Route path="/userTasks" component={UserTasks} />
+			<Route exact path="/userTasks/:id" component={UserTasks} />
 			<Route path="/footer" component={Footer} />
 			<Redirect to="/" />
 		</Switch>
