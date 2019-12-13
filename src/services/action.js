@@ -54,6 +54,15 @@ export const getUserTodos = async () => {
 	return result.data.foundTasks;
 };
 
+export const getUserTodo = async id => {
+	const getUserTodoUrl = `${baseUrl}tasks/${id}`;
+
+	const result = await axios.get(getUserTodoUrl, {
+		headers,
+	});
+	return result.data.foundTasks;
+};
+
 export const getOneUserTodos = async id => {
 	const getUserTodoUrl = `${baseUrl}tasks/${id}`;
 

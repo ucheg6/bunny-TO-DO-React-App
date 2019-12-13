@@ -23,7 +23,7 @@ const UsersComponent = () => {
 		if (usersList && usersList.length) {
 			return usersList.map(user => (
 				<li className="list-group-item" key={user.id}>
-					<Link to="/userTasks">{user.Name}</Link>
+					<Link to={`/userTasks/${user.id}`}>{user.Name}</Link>
 					<button
 						className="fas fa-trash float-right ml-3 "
 						onClick={e => handledelete(e, user.id)}

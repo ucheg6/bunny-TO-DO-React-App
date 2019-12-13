@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-
+import { useHistory } from 'react-router-dom';
 import { createUser } from '../services/action';
 
 const SignupComponent = () => {
 	const [userName, setUserName] = useState('');
+	const router = useHistory();
 
 	const onSubmit = event => {
 		event.preventDefault();

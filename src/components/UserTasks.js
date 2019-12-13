@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { getUserTodos } from '../services/action';
+import { useHistory } from 'react-router-dom';
+import { getUserTodo } from '../services/action';
 const UserTaskComponent = () => {
+	const router = useHistory();
+	const userId = router.location.pathname.toString().split('/')[2];
+
 	const [userTodos, setUserTodos] = useState([]);
 	useEffect(() => {
-		getUserTodos().then(userTodos => {
+		getUserTodo(userId).then(userTodos => {
 			setUserTodos([userTodos]);
 		});
 	}, [userTodos.length]);
 
 	const RenderUserTodos = () => {
 		if (userTodos && userTodos.length) {
-			console.log(userTodos);
 			const todoList = userTodos[0];
 			return todoList.map(todo => {
 				return (
@@ -19,6 +22,12 @@ const UserTaskComponent = () => {
 					</li>
 				);
 			});
+		} else {
+			return (
+				<li className="list-group-item">
+					<div>No Task for this user!</div>
+				</li>
+			);
 		}
 	};
 	return (
