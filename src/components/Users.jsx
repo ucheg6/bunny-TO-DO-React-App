@@ -1,37 +1,58 @@
 import React, { useEffect, useState } from 'react';
-import { getUsers, deleteUser } from '../services/action';
+import { getUsers, deleteUser, editUser } from '../services/action';
+import { ToastContainer } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const UsersComponent = () => {
 	const [usersList, setUsersList] = useState([]);
+	const [editedUser, setEditedUser] = useState('');
+	const [userId, setId] = useState();
+	const [display, setDisplay] = useState(false);
+
 	useEffect(() => {
 		getUsers().then(usersList => {
 			setUsersList(usersList);
 		});
 	}, [usersList.length]);
 
+	const prepState = id => {
+		setDisplay(true);
+		setId(id);
+		return id;
+	};
 	const renderUsersList = () => {
 		if (usersList && usersList.length) {
 			return usersList.map(user => (
 				<li className="list-group-item" key={user.id}>
-					{user.Name}
+					<Link to="/userTasks">{user.Name}</Link>
 					<button
 						className="fas fa-trash float-right ml-3 "
 						onClick={e => handledelete(e, user.id)}
 					></button>
-					<button className="fas fa-edit float-right ml-3"></button>
+					<button
+						className="fas fa-edit float-right ml-3"
+						onClick={e => prepState(user.id)}
+					></button>
 				</li>
 			));
 		}
 	};
 	const handledelete = (event, id) => {
 		event.preventDefault();
-		deleteUser(id).then(newUsersList => {
+		deleteUser(id).then(() => {
 			setUsersList(usersList.filter(user => user.id !== id));
 		});
+	};
+	const handleEditUser = event => {
+		event.preventDefault();
+		editUser(userId, editedUser);
+		setUsersList([...usersList, editedUser]);
+		setDisplay(false);
 	};
 	return (
 		<div className="container">
 			<div className="col-md-12">
+				<ToastContainer />
 				<h3 className="text-center m-3">Users</h3>
 			</div>
 			<div className="col-md-12">
@@ -39,7 +60,34 @@ const UsersComponent = () => {
 				<div className="col-md-12">
 					<div className="col-md-3"></div>
 					<div className="col-md-7 m-auto">
-						<ul className="list-group">{renderUsersList()}</ul>
+						<ul className="list-group">
+							{display ? (
+								<div className="input-group mb-3">
+									<input
+										type="text"
+										className="form-control"
+										placeholder="type something"
+										aria-label="something to do"
+										aria-describedby="input_todo"
+										id="user_input"
+										value={editedUser}
+										onChange={e => setEditedUser(e.target.value)}
+									/>
+									<div className="input-group-append">
+										<button
+											className="btn btn-outline-success"
+											type="button"
+											id="add_button"
+											onClick={e => handleEditUser(e)}
+										>
+											Edit User
+										</button>
+									</div>
+								</div>
+							) : (
+								renderUsersList()
+							)}
+						</ul>
 					</div>
 					<div className="col-md-3"></div>
 				</div>

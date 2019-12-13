@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Navbar, Footer, Signup, Todo, Users } from './components';
+import { Navbar, Footer, Signup, Todo, UserTasks, Users } from './components';
 
 const Routes = () => (
 	<div>
@@ -11,10 +11,11 @@ const Routes = () => (
 			<Route path="/signup" component={Signup} />
 			<Route path="/todo" component={Todo} />
 			<Route path="/users" component={Users} />
+			<Route path="/userTasks" component={UserTasks} />
 			<Route path="/footer" component={Footer} />
 			<Redirect to="/" />
 		</Switch>
-		<Footer />
+		{/* <Footer /> */}
 	</div>
 );
 
